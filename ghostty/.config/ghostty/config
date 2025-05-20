@@ -1,0 +1,10 @@
+theme = /home/joaofelipe/.ghq/github.com/folke/tokyonight.nvim/extras/ghostty/tokyonight_night
+
+font-family = "PlemolJP Console NF"
+
+window-theme = ghostty
+
+cursor-style = block
+cursor-style-blink = true
+
+background-opacity = 0.9
