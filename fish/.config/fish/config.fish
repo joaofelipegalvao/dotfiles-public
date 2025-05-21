@@ -1,19 +1,23 @@
 # ---- Yazi setup ----
-    function y
-        set tmp (mktemp -t "yazi-cwd.XXXXXX")
-        yazi $argv --cwd-file="$tmp"
-        if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-            builtin cd -- "$cwd"
-        end
-        rm -f -- "$tmp"
+function y
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if read -z cwd <"$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        builtin cd -- "$cwd"
     end
+    rm -f -- "$tmp"
+end
 
 # ----  Aliases ----
-alias ls='eza --icons'
-alias la='eza -A --icons'
-alias ll='eza -l --icons'
-alias lla='eza -lA --icons'
-alias g='git'
+alias ls "ls -p -G"
+alias la "ls -A"
+alias ll "ls -l"
+alias lla "ll -A"
+alias g git
+
+command -qv nvim && alias vim nvim
+
+set -gx EDITOR nvim
 
 # ---- Theme FZF ----
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
