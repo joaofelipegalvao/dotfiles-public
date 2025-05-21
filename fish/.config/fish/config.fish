@@ -9,11 +9,11 @@ function y
 end
 
 # ----  Aliases ----
-alias ls "ls -p -G"
-alias la "ls -A"
-alias ll "ls -l"
-alias lla "ll -A"
-alias g git
+alias ls='eza --icons'
+alias la='eza -A --icons'
+alias ll='eza -l --icons'
+alias lla='eza -lA --icons'
+alias g='git'
 
 command -qv nvim && alias vim nvim
 
