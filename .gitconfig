@@ -1,0 +1,90 @@
+[core]
+  excludesfile = ~/.gitignore
+  editor = nvim
+  ignorecase = false
+
+[push]
+  default = simple
+
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+  ui = auto
+
+[alias]
+  a = "!git status --short | fzf --multi | awk '{print $2}' | xargs git add"
+  d = diff
+  co = checkout
+  ci = commit
+  ca = commit -a
+  ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
+  pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
+  st = status
+  br = branch
+  ba = branch -a
+  bm = branch --merged
+  bn = branch --no-merged
+  df = "!git hist | fzf | awk '{print $2}' | xargs -I {} git diff {}^ {}"
+  hist = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
+  llog = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
+  open = "!gh repo view --web"
+  type = cat-file -t
+  dump = cat-file -p
+  find = "!f() { git log --pretty=format:'%h %cd [%cn] %s%d' --date=relative -S\"$@\" | fzf | awk '{print $1}' | xargs -I {} git diff {}^ {}; }; f"
+  edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
+  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+
+[diff]
+  tool = nvimdiff
+
+[difftool "nvimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+
+[mergetool "nvimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -c 'wincmd l' -c 'diffthis' -c 'wincmd h' -c 'diffthis'
+  trustExitCode = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  conflictstyle = diff3
+
+[delta]
+  features = line-numbers decorations
+  syntax-theme = Monokai Extended
+  side-by-side = true
+  line-numbers = true
+  navigate = true
+  whitespace-error-style = 22 reverse
+  zero-style = syntax
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box
+  commit-style = raw
+  file-style = bold yellow ul
+  file-decoration-style = none
+  hunk-header-decoration-style = cyan box
+  hunk-header-style = line-number syntax
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
+
+[ghq]
+  root = ~/.ghq
+
+[user]
+  name = joaofelipegalvao
+	email = 176946005+joaofelipegalvao@users.noreply.github.com
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/gh auth git-credential
