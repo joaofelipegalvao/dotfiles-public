@@ -1,5 +1,5 @@
-![screenshot-08032025-183411.jpg](https://i.postimg.cc/K8GzdK3s/screenshot-02042025-001152.png)
-![screenshot-08032025-184321.jpg](https://i.postimg.cc/CLYLqZ7L/screenshot-02042025-001152-1.png)
+![terminal.png](https://i.postimg.cc/ryj5PP5R/terminal.png)
+![ui.png](https://i.postimg.cc/nzchj0rN/ui.png)
 
 ## Dotfiles
 
@@ -33,7 +33,7 @@ Este repositório contém meus arquivos de configuração pessoais (dotfiles) pa
   - **[alacritty](https://github.com/alacritty/alacritty)** (Linux, Macos & Windows)
   - **[iterm2](https://iterm2.com/)** (Macos)
   - **[Ghostty](https://github.com/ghostty/ghostty)** - (Linux & Macos)
-- **[Solarized Osaka Neovim](https://github.com/craftzdog/solarized-osaka.nvim)**
+- **[Tokyonight Neovim](https://github.com/folke/tokyonight.nvim)**
 
 ## Yazi (Gerenciador de arquivos)
 
@@ -49,12 +49,11 @@ Este repositório contém meus arquivos de configuração pessoais (dotfiles) pa
 
 ## Configuração do Shell (macOS & Linux)
 
-- **[Zsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)**
+- **[Fish shell](https://fishshell.com/)**
 - **[Starship](https://github.com/starship/starship)** - Prompt de linha de comando altamente personalizável
-- **[Zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)** - Sugestões automáticas de comandos no Zsh
-- **[Zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)** - Realça a sintaxe dos comandos no Zsh
+- **[Fisher](https://github.com/jorgebucaran/fisher)** - Gerenciador de plugins
 - **[Nerd fonts](https://github.com/ryanoasis/nerd-fonts)** - Fontes modificadas para uso no desenvolvimento. Eu uso **[PlemolJP](https://github.com/yuru7/PlemolJP)** e BlexMono.
-- **[Zoxide](https://github.com/ajeetdsouza/zoxide)** Navegação entre diretórios.
+- **[z for fish](https://github.com/jethrokuan/z)** Navegação entre diretórios.
 - **[Eza](https://github.com/eza-community/eza)** - Substituto do <code>ls</code>
 - **[ghq](https://github.com/x-motemen/ghq)** - Organizador de repositórios Git locais
 - **[fzf](https://github.com/PatrickF1/fzf.fish)** - Localizador fuzzy
