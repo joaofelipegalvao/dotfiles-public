@@ -1,3 +1,10 @@
+set fish_greeting ""
+
+
+# Configurações ideais para o Ghostty
+set -gx TERM ghostty
+set -gx COLORTERM truecolor
+
 # ---- Yazi setup ----
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
@@ -14,6 +21,8 @@ alias la='eza -A --icons'
 alias ll='eza -l --icons'
 alias lla='eza -lA --icons'
 alias g='git'
+alias lzd="lazydocker"
+alias lzg="lazygit"
 
 command -qv nvim && alias vim nvim
 
