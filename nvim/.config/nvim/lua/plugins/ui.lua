@@ -14,14 +14,22 @@ return {
     },
   },
 
-{
+  {
   "folke/snacks.nvim",
-  opts = {
-    dashboard = {
-      preset = {
-        header = [[
-                                                                    
-                                                                    
+  opts = function(_, opts)
+    return vim.tbl_deep_extend("force", opts or {}, {
+      picker = {
+        sources = {
+          explorer = {
+            hidden = true,
+            ignored = true,
+          }
+        }
+      },
+      dashboard = {
+        preset = {
+          header = [[
+
     ╭─ JavaEditor.java ───────────────────────────────────────────╮
     │   1  public class Developer {                               │
     │   2      private String name = "☕ Java Developer";         │
@@ -36,10 +44,11 @@ return {
     │  11      // TODO: Build amazing software                    │
     │  12  }                                                      │
     ╰─────────────────────────────────────────────────────────────╯
-        ]],
+          ]],
+        },
       },
-    },
-  },
+    })
+  end,
 },
 
   {
@@ -82,19 +91,24 @@ return {
         "mode",
         fmt = function(str)
           local mode_map = {
-            ["NORMAL"] = " NORMAL",
-            ["INSERT"] = " INSERT",
-            ["VISUAL"] = " VISUAL",
-            ["V-LINE"] = " V-LINE",
-            ["COMMAND"] = " COMMAND",
-            ["TERMINAL"] = " TERM",
+            ["NORMAL"] = "",
+            ["INSERT"] = "",
+            ["VISUAL"] = "",
+            ["V-LINE"] = "",
+            ["COMMAND"] = "",
+            ["TERMINAL"] = "",
           }
           return mode_map[str] or str
         end,
          color =  { gui = "bold" },
       },
     }
-
+      opts.sections.lualine_b = {
+  {
+    "branch",
+    icon = "",
+  }
+}
     -- Adicionar os indicadores Java na seção lualine_x
     if not opts.sections.lualine_x then
       opts.sections.lualine_x = {}
