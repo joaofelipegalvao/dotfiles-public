@@ -35,15 +35,14 @@ echo
 declare -A CONFIGS=(
   ["Fish Shell"]="$HOME/.config/fish"
   ["Neovim"]="$HOME/.config/nvim"
-  ["Tmux (config dir)"]="$HOME/.config/tmux"
-  ["Tmux (conf file)"]="$HOME/.tmux.conf"
+  ["Tmux"]="$HOME/.config/tmux"
   ["Yazi"]="$HOME/.config/yazi"
   ["Ghostty"]="$HOME/.config/ghostty"
   ["LazyGit"]="$HOME/.config/lazygit"
   ["Mise"]="$HOME/.config/mise"
   ["Starship"]="$HOME/.config/starship.toml"
   ["Git Config"]="$HOME/.gitconfig"
-  ["Git Ignore Global"]="$HOME/.gitignore_global"
+  ["Git Ignore Global"]="$HOME/.gitignore"
 )
 
 log_info "Verificando symlinks..."

@@ -38,14 +38,13 @@ SYMLINKS=(
   "$HOME/.config/fish"
   "$HOME/.config/nvim"
   "$HOME/.config/tmux"
-  "$HOME/.tmux.conf"
   "$HOME/.config/yazi"
   "$HOME/.config/ghostty"
   "$HOME/.config/lazygit"
   "$HOME/.config/mise"
   "$HOME/.config/starship.toml"
   "$HOME/.gitconfig"
-  "$HOME/.gitignore_global"
+  "$HOME/.gitignore"
 )
 
 # Remover symlinks
