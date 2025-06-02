@@ -2,6 +2,7 @@ return {
   "echasnovski/mini.icons",
   opts = {
     file = {
+      -- For java
       ["org.eclipse.core.resources.prefs"] = { glyph = "󰦨" },
       ["org.eclipse.jdt.apt.core.prefs"] = { glyph = "󰦨" },
       ["org.eclipse.jdt.core.prefs"] = { glyph = "󰦨" },

@@ -4,7 +4,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      style = "storm",
+      style = "night",
       transparent = false,
     },
     config = function(_, opts)
@@ -12,4 +12,5 @@ return {
       vim.cmd.colorscheme("tokyonight")
     end
   }
+
 }

@@ -10,7 +10,7 @@ map("v", "p", '"0p', { desc = "Paste last yank" })
 
 -- Better increment/decrement
 map("n", "+", "<C-a>", { desc = "Increment number" })
-map("n", "_", "<C-x>", { desc = "Decrement number" })
+map("n", "-", "<C-x>", { desc = "Decrement number" })
 
 -- Delete a word backwards
 map("n", "dw", 'vb"_d')

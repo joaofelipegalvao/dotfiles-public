@@ -96,7 +96,7 @@ style = "bg:base01"
 format = '[[($all_status$ahead_behind )](fg:base08 bg:base01)]($style)'
 
 [nodejs]
-symbol = ""
+symbol = " "
 style = "bg:base02"
 format = '[[ $symbol( $version) ](fg:base0 bg:base02)]($style)'
 
@@ -121,7 +121,7 @@ style = "bg:base02"
 format = '[[ $symbol( $version) ](fg:base0 bg:base02)]($style)'
 
 [java]
-symbol = " "
+symbol = "󰅶"
 style = "bg:base02"
 format = '[[ $symbol( $version) ](fg:base0 bg:base02)]($style)'
 

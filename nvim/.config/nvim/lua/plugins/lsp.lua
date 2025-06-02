@@ -10,7 +10,7 @@ return {
         "shfmt",
         "tailwindcss-language-server",
         "css-lsp",
-        -- "google-format-java",
+        "google-java-format",
         "lemminx",
       })
     end,

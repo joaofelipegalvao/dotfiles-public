@@ -8,6 +8,11 @@ return {
         "fish",
         "graphql",
         "http",
+        "json",
+        "jq",
+        "yaml",
+        "query",
+        "dockerfile",
         "java",
         "javascript",
         "scss",
@@ -16,6 +21,7 @@ return {
         "bash",
         "html",
         "markdown",
+        "vimdoc"
       })
     end,
   }

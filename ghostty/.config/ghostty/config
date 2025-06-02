@@ -1,10 +1,47 @@
 theme = /home/joaofelipe/.ghq/github.com/folke/tokyonight.nvim/extras/ghostty/tokyonight_night
 
+# Fonte
 font-family = "PlemolJP Console NF"
 
-window-theme = ghostty
+window-decoration = false
 
+
+# Cursor
 cursor-style = block
 cursor-style-blink = true
+cursor-color = #c0caf5
+cursor-text = #1a1b26
 
-background-opacity = 0.9
+# Links
+link-url = true
+
+working-directory = inherit
+
+# Scrollback
+scrollback-limit = 10000
+
+# Mouse
+mouse-hide-while-typing = true
+copy-on-select = false
+
+window-padding-y = 2,4
+window-padding-x = 2,4
+window-padding-balance = true
+window-padding-color = background
+
+# Configurações de shell
+shell-integration = fish
+shell-integration-features = cursor,sudo,title
+
+# Configurações avançadas
+confirm-close-surface = false
+quit-after-last-window-closed = true
+resize-overlay = never
+
+
+
+# Bell/notificações - usando campos válidos do Ghostty
+desktop-notifications = false
+
+# Auto-hide da barra de título em fullscreen
+auto-update = check

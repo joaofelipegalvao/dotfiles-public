@@ -91,11 +91,11 @@ return {
         "mode",
         fmt = function(str)
           local mode_map = {
-            ["NORMAL"] = "",
-            ["INSERT"] = "",
-            ["VISUAL"] = "",
-            ["V-LINE"] = "",
-            ["COMMAND"] = "",
+            ["NORMAL"] = "NORMAL",
+            ["INSERT"] = "INSERT",
+            ["VISUAL"] = "VISUAL",
+            ["V-LINE"] = "V-LINE",
+            ["COMMAND"] = "COMMAND",
             ["TERMINAL"] = "",
           }
           return mode_map[str] or str
@@ -135,11 +135,14 @@ return {
 
     -- Configurar section_z
     opts.sections.lualine_z = {
-      function()
-        return " "
-      end,
+      {
+          function()
+            return " "
+          end,
+          color = { gui = "bold"}
+        }
     }
-    
+
     return opts
   end,
 },
