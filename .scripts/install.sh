@@ -129,17 +129,8 @@ setup_configurations() {
     create_symlink "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
   fi
 
-
   if [[ -f "$DOTFILES_DIR/.gitignore" ]]; then
     create_symlink "$DOTFILES_DIR/.gitignore" "$HOME/.gitignore"
-  fi
-
-  # backup-arch (script de backup)
-  if [[ -f "$DOTFILES_DIR/.scripts/backup-arch.sh" ]]; then
-    sudo ln -sf "$DOTFILES_DIR/.scripts/backup-arch.sh" /usr/local/bin/backup-arch
-    log_success "Link simbólico criado: /usr/local/bin/backup-arch -> $DOTFILES_DIR/.scripts/backup-arch.sh"
-  else
-    log_warning "Script de backup não encontrado: $DOTFILES_DIR/.scripts/backup-arch.sh"
   fi
 }
 

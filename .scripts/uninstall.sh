@@ -3,7 +3,7 @@
 # Script de desinstalação de dotfiles
 # Remove symlinks e restaura backups se disponíveis
 
-set -euo pipefail
+set -e
 
 # Cores
 RED='\033[0;31m'
@@ -17,15 +17,15 @@ log_info() {
 }
 
 log_success() {
-  echo -e "${GREEN}[✓]${NC} $1"
+  echo -e "${GREEN}[SUCCESS]${NC} $1"
 }
 
 log_warning() {
-  echo -e "${YELLOW}[!]${NC} $1"
+  echo -e "${YELLOW}[WARNING]${NC} $1"
 }
 
 log_error() {
-  echo -e "${RED}[✗]${NC} $1"
+  echo -e "${RED}[ERROR]${NC} $1"
 }
 
 echo "=================================="
@@ -47,39 +47,29 @@ SYMLINKS=(
   "$HOME/.gitignore"
 )
 
+# Remover symlinks
 log_info "Removendo symlinks..."
-echo
-
 for symlink in "${SYMLINKS[@]}"; do
   if [[ -L "$symlink" ]]; then
     rm "$symlink"
     log_success "Removido: $symlink"
   elif [[ -e "$symlink" ]]; then
-    log_warning "Existe mas não é symlink: $symlink (não removido)"
-  else
-    log_info "Não encontrado: $symlink"
+    log_warning "Existe mas não é symlink: $symlink"
   fi
 done
 
-echo
 # Restaurar backups se disponíveis
 BACKUP_DIR="$HOME/.dotfiles-backup"
-
 if [[ -d "$BACKUP_DIR" ]]; then
   log_info "Backups encontrados em: $BACKUP_DIR"
+  echo "Backups disponíveis:"
+  ls -la "$BACKUP_DIR"
   echo
-  ls -lh "$BACKUP_DIR"
+  read -p "Deseja restaurar algum backup? (y/N): " -n 1 -r
   echo
-  read -rp "Deseja restaurar algum backup manualmente? (y/N): " REPLY
-  echo
-  if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-    log_info "Restaure manualmente os arquivos desejados de: $BACKUP_DIR"
-  else
-    log_info "Backups não restaurados."
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Restaure manualmente os arquivos desejados de: $BACKUP_DIR"
   fi
-else
-  log_info "Nenhum diretório de backup encontrado."
 fi
 
-echo
 log_success "Desinstalação concluída!"
