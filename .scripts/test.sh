@@ -109,6 +109,21 @@ else
 fi
 
 echo
+log_info "Verificando script de backup..."
+echo
+
+BACKUP_SCRIPT="$HOME/dotfiles/scripts/backup-arch.sh"
+
+if [[ -x "$BACKUP_SCRIPT" ]]; then
+  log_success "Script de backup encontrado: $BACKUP_SCRIPT"
+  $BACKUP_SCRIPT status
+elif [[ -f "$BACKUP_SCRIPT" ]]; then
+  log_warning "Script encontrado mas não é executável: $BACKUP_SCRIPT"
+else
+  log_error "Script de backup não encontrado em $BACKUP_SCRIPT"
+fi
+
+echo
 echo "=================================="
 echo "   RESUMO DO TESTE"
 echo "=================================="
