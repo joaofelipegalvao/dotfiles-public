@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Script para testar se as configurações estão funcionando
-# Execute após a instalação para verificar os symlinks
-
-# Cores
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -31,7 +27,7 @@ echo "   TESTE DE CONFIGURAÇÕES"
 echo "=================================="
 echo
 
-# Lista de symlinks para verificar
+# Lista atualizada de symlinks para verificar
 declare -A CONFIGS=(
   ["Fish Shell"]="$HOME/.config/fish"
   ["Neovim"]="$HOME/.config/nvim"
@@ -41,6 +37,9 @@ declare -A CONFIGS=(
   ["LazyGit"]="$HOME/.config/lazygit"
   ["Mise"]="$HOME/.config/mise"
   ["Starship"]="$HOME/.config/starship.toml"
+  ["WezTerm"]="$HOME/.config/wezterm"
+  ["Bat"]="$HOME/.config/bat"
+  ["Scripts Personalizados"]="$HOME/.scripts"
   ["Git Config"]="$HOME/.gitconfig"
   ["Git Ignore Global"]="$HOME/.gitignore"
 )
@@ -69,13 +68,23 @@ echo
 log_info "Verificando comandos disponíveis..."
 echo
 
-# Verificar se as ferramentas estão instaladas
-tools=("fish" "nvim" "tmux" "yazi" "lazygit" "mise" "starship")
+# Lista atualizada de ferramentas para verificar
+tools=("fish" "nvim" "tmux" "yazi" "lazygit" "mise" "starship" "wezterm" "bat")
 
 for tool in "${tools[@]}"; do
   if command -v "$tool" &>/dev/null; then
-    version=$(command -v "$tool" && $tool --version 2>/dev/null | head -n1 || echo "versão não disponível")
-    log_success "$tool: $(which $tool)"
+    case "$tool" in
+      "wezterm")
+        version=$(wezterm --version 2>/dev/null | head -n1 || echo "versão não disponível")
+        ;;
+      "bat")
+        version=$(bat --version 2>/dev/null | head -n1 || echo "versão não disponível")
+        ;;
+      *)
+        version=$($tool --version 2>/dev/null | head -n1 || echo "versão não disponível")
+        ;;
+    esac
+    log_success "$tool: $(which $tool) - $version"
   else
     log_error "$tool: Não instalado"
   fi
@@ -92,9 +101,9 @@ if command -v fish &>/dev/null && [[ -f "$HOME/.config/fish/fish_plugins" ]]; th
 fi
 
 # Verificar se o Git está usando o gitignore global
-if [[ -f "$HOME/.gitignore_global" ]]; then
+if [[ -f "$HOME/.gitignore" ]]; then
   global_ignore=$(git config --global core.excludesfile 2>/dev/null || echo "não configurado")
-  if [[ "$global_ignore" == "$HOME/.gitignore_global" ]]; then
+  if [[ "$global_ignore" == "$HOME/.gitignore" ]]; then
     log_success "Git ignore global configurado corretamente"
   else
     log_warning "Git ignore global: $global_ignore"
@@ -106,6 +115,61 @@ if [[ "$SHELL" == *"fish"* ]]; then
   log_success "Fish é o shell padrão"
 else
   log_info "Shell atual: $SHELL"
+fi
+
+# Verificar scripts personalizados no PATH
+if [[ -d "$HOME/.scripts" ]]; then
+  if [[ ":$PATH:" == *":$HOME/.scripts:"* ]]; then
+    log_success "Scripts personalizados estão no PATH"
+    
+    # Contar scripts executáveis
+    script_count=$(find "$HOME/.scripts" -type f -executable 2>/dev/null | wc -l)
+    if [[ $script_count -gt 0 ]]; then
+      log_info "Scripts executáveis encontrados: $script_count"
+    else
+      log_warning "Nenhum script executável encontrado em ~/.scripts"
+    fi
+  else
+    log_warning "Scripts personalizados não estão no PATH"
+  fi
+fi
+
+# Verificar configuração do WezTerm
+if command -v wezterm &>/dev/null && [[ -f "$HOME/.config/wezterm/wezterm.lua" ]]; then
+  if wezterm --version >/dev/null 2>&1; then
+    log_success "WezTerm configurado e funcionando"
+  else
+    log_warning "WezTerm instalado mas pode ter problemas de configuração"
+  fi
+fi
+
+# Verificar cache do Bat
+if command -v bat &>/dev/null; then
+  # Verificar se há temas customizados
+  bat_config_dir="$HOME/.config/bat"
+  if [[ -d "$bat_config_dir/themes" ]] && [[ $(ls -A "$bat_config_dir/themes" 2>/dev/null | wc -l) -gt 0 ]]; then
+    log_info "Temas customizados do Bat encontrados"
+  fi
+  
+  # Testar se bat funciona
+  if echo "teste" | bat --style=plain >/dev/null 2>&1; then
+    log_success "Bat funcionando corretamente"
+  else
+    log_warning "Bat pode ter problemas de configuração"
+  fi
+fi
+
+# Verificar configuração do Mise
+if command -v mise &>/dev/null && [[ -f "$HOME/.config/mise/config.toml" ]]; then
+  log_success "Mise configurado"
+  
+  # Verificar runtimes instalados
+  mise_list=$(mise list 2>/dev/null | wc -l)
+  if [[ $mise_list -gt 0 ]]; then
+    log_info "Runtimes do Mise instalados: $mise_list"
+  else
+    log_info "Nenhum runtime do Mise instalado ainda"
+  fi
 fi
 
 echo
@@ -125,13 +189,33 @@ done
 
 echo "Symlinks válidos: $valid_symlinks/$total_configs"
 
-if [[ $valid_symlinks -eq $total_configs ]]; then
-  log_success "Todas as configurações estão funcionando!"
+# Contar ferramentas instaladas
+installed_tools=0
+total_tools=${#tools[@]}
+
+for tool in "${tools[@]}"; do
+  if command -v "$tool" &>/dev/null; then
+    ((installed_tools++))
+  fi
+done
+
+echo "Ferramentas instaladas: $installed_tools/$total_tools"
+
+# Status geral
+if [[ $valid_symlinks -eq $total_configs ]] && [[ $installed_tools -eq $total_tools ]]; then
+  log_success "Todas as configurações estão funcionando perfeitamente!"
+elif [[ $valid_symlinks -eq $total_configs ]]; then
+  log_warning "Configurações OK, mas algumas ferramentas não estão instaladas"
+elif [[ $installed_tools -eq $total_tools ]]; then
+  log_warning "Ferramentas OK, mas algumas configurações podem precisar de atenção"
 else
-  log_warning "Algumas configurações podem precisar de atenção"
+  log_warning "Algumas configurações e ferramentas podem precisar de atenção"
 fi
 
 echo
+echo "=================================="
+echo "   TESTES INDIVIDUAIS"
+echo "=================================="
 echo "Para testar individualmente:"
 echo "  fish -c 'echo Fish funcionando!'"
 echo "  nvim --version"
@@ -140,3 +224,21 @@ echo "  yazi --version"
 echo "  lazygit --version"
 echo "  mise --version"
 echo "  starship --version"
+echo "  wezterm --version"
+echo "  bat --version"
+echo "  ls ~/.scripts"
+echo
+echo "Testes funcionais:"
+echo "  echo 'print(\"Hello World\")' | bat -l python"
+echo "  starship prompt"
+echo "  mise current"
+echo "  yazi --help"
+
+# Verificar se há backups anteriores
+if [[ -d "$HOME/.dotfiles-backup" ]]; then
+  backup_count=$(find "$HOME/.dotfiles-backup" -maxdepth 1 -type d | wc -l)
+  if [[ $backup_count -gt 1 ]]; then
+    echo
+    log_info "Backups encontrados em ~/.dotfiles-backup/ ($((backup_count-1)) backups)"
+  fi
+fi
