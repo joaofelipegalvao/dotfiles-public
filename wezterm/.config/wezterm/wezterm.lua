@@ -10,9 +10,11 @@ end
 -- ============================================================================
 
 -- Esquema de cores
-config.color_scheme = "tokyonight_storm"
+config.color_scheme = "tokyonight_moon"
 
 -- Fonte
+config.font_size = 11
+config.line_height = 1.2
 config.font = wezterm.font({
 	family = "CaskaydiaCove Nerd Font",
 	weight = "Regular",
@@ -34,17 +36,17 @@ config.font = wezterm.font({
 })
 
 -- Transparência da janela
-config.window_background_opacity = 0.6
+-- config.window_background_opacity = 0.6
 config.kde_window_background_blur = true
 
 config.window_decorations = "NONE"
 
 -- Padding interno
 config.window_padding = {
-  left = 2,
-  right = 2,
-  top = 12,
-  bottom = 0,
+  left = 5,
+  right = 5,
+  top = 5,
+  bottom = 5,
 }
 
 -- ============================================================================
