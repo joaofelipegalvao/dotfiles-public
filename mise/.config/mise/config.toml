@@ -2,7 +2,7 @@
 ghq = "latest"
 java = "openjdk-21.0.2"
 lazydocker = "latest"
-maven = "3.9.6"
+maven = "latest"
 node = "latest"
 python = "latest"
 rust = "latest"
