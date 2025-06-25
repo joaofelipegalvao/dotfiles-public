@@ -1,9 +1,8 @@
 set fish_greeting ""
 
 
-# Configurações ideais para o Ghostty
-set -gx TERM ghostty
 set -gx COLORTERM truecolor
+set -gx TERM xterm-256color
 
 # ---- Yazi setup ----
 function y
@@ -59,4 +58,5 @@ starship init fish | source
 set -x PATH $HOME/.local/bin $HOME/.cargo/bin $PATH
 
 # ---- Mise ----
-~/.local/bin/mise activate fish | source
+/usr/bin/mise activate fish | source
+set -gx PATH $HOME/.scripts $PATH
