@@ -1,5 +1,5 @@
 [core]
-  excludesfile = ~/.gitignore
+	excludesfile = /home/joaofelipe/.gitignore
   editor = nvim
   ignorecase = false
 
