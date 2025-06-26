@@ -23,6 +23,16 @@ alias g='git'
 alias lzd="lazydocker"
 alias lzg="lazygit"
 
+# ---- Mise ----
+/usr/bin/mise activate fish | source
+
+
+set -x PATH $HOME/.local/bin $HOME/.scripts $PATH
+
+# ---- Starship ----
+starship init fish | source
+
+
 command -qv nvim && alias vim nvim
 
 set -gx EDITOR nvim
@@ -52,11 +62,3 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color=spinner:#ff007c \
 "
 
-# ---- Starship ----
-starship init fish | source
-
-set -x PATH $HOME/.local/bin $HOME/.cargo/bin $PATH
-
-# ---- Mise ----
-/usr/bin/mise activate fish | source
-set -gx PATH $HOME/.scripts $PATH
