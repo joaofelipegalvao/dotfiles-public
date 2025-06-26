@@ -6,3 +6,5 @@ maven = "latest"
 node = "latest"
 python = "latest"
 rust = "latest"
+rust-analyzer = "latest"
+
