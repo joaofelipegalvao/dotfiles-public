@@ -29,9 +29,9 @@ $line_break$character"""
 palette = 'tokyonight_storm'
 
 [palettes.tokyonight_storm]
-base0 = '#7aa2f7'
-base01 = '#394b70'
-base02 = '#24283b'
+base0 = '#1a1b26'
+base01 = '#292e42'
+base02 = '#bb9af7'
 base03 = '#1d202f'
 base04 = '#9ece6a'
 base05 = '#db4b4b'
@@ -74,7 +74,7 @@ style_root = "bg:base02 fg:base0"
 format = '[ $user ]($style)'
 
 [directory]
-style = "fg:base03 bg:base0"
+style = "fg:base02 bg:base0"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -106,7 +106,7 @@ style = "bg:base02"
 format = '[[ $symbol( $version) ](fg:base0 bg:base02)]($style)'
 
 [rust]
-symbol = ""
+symbol = ""
 style = "bg:base02"
 format = '[[ $symbol( $version) ](fg:base0 bg:base02)]($style)'
 
@@ -149,7 +149,7 @@ format = '[[ $symbol( $context) ](fg:base0 bg:base02)]($style)'
 disabled = false
 time_format = "%R"
 style = "bg:base0"
-format = '[[   $time ](fg:base03 bg:base0)]($style)'
+format = '[[   $time ](fg:base02 bg:base0)]($style)'
 
 [line_break]
 disabled = false
