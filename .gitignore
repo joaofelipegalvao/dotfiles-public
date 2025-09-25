@@ -2,4 +2,4 @@
 *.swp
 .DS_Store
 node_modules/
-zsh/secrets
+zsh/.config/zsh/secrets
