@@ -1,10 +1,8 @@
+[settings]
+idiomatic_version_file_enable_tools = ["ruby"]
+
 [tools]
 ghq = "latest"
-java = "openjdk-21.0.2"
-lazydocker = "latest"
-maven = "latest"
-node = "latest"
-python = "latest"
-rust = "latest"
-rust-analyzer = "latest"
-
+java = "latest"
+node = "lts"
+ruby = "latest"
