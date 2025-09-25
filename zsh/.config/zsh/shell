@@ -1,0 +1,31 @@
+# history
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=$HISTSIZE
+
+# sane defaults
+setopt inc_append_history share_history hist_ignore_all_dups
+setopt autocd no_beep interactivecomments
+unsetopt nomatch
+
+# Set complete path
+export PATH="./bin:$HOME/.local/bin:$PATH"
+set +h
+
+# completion
+autoload -Uz compinit && compinit
+zstyle ':completion:*' menu select
+bindkey -e
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# Yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}

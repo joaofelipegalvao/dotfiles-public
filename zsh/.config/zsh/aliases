@@ -1,0 +1,11 @@
+#alias monhd="sudo ddcutil -d 1 setvcp 60 0x12"
+#alias mondp="sudo ddcutil -d 1 setvcp 60 0x0F"
+
+alias sgpt='docker run --rm --dns=8.8.8.8 --dns=8.8.4.4 -e OPENAI_API_BASE=${OPENAI_API_BASE} -e OPENAI_API_KEY=${OPENROUTER_API_KEY} ghcr.io/tbckr/sgpt:latest txt '
+
+
+alias ls='eza --icons'
+alias la='eza -A --icons'
+alias ll='eza -l --icons'
+alias lla='eza -lA --icons'
+alias g='git'
